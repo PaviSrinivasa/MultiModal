@@ -1,0 +1,10 @@
+#!/bin/sh
+
+ -N test-demo
+ -cwd
+ -q single.q
+ -S /bin/bash
+# -M youremail@server.com
+# -m beas
+
+bash multimodal/scripts/file_manipulater.sh create
