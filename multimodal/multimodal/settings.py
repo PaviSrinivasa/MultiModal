@@ -22,24 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-&61o)_=f2nbtvj6x&nk)y#y0ba3pw)tg5xcn-ns9ij-9pbt)sh'
-
-from django.utils.crypto import get_random_string
-
-def generate_secret_key(fname):
-    chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
-    f = open(fname, 'w')
-    f.write("SECRET_KEY = '%s'\n"%get_random_string(50, chars))
-
-try:
-    from .secret_settings import *
-except ImportError:
-    SETTINGS_DIR=os.path.abspath(os.path.dirname(__file__))
-    generate_secret_key(os.path.join(SETTINGS_DIR, 'secret_settings.py'))
-    from .secret_settings import *
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
