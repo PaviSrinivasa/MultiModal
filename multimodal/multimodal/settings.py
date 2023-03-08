@@ -87,21 +87,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'multimodal.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mpi-multimodel',
-        'USER': 'mpi-multimodel-admin',
-        'PASSWORD': 'mpimultimodelad*min', # enter db password here
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
