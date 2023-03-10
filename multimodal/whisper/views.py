@@ -11,7 +11,7 @@ import json, requests
 from subprocess import Popen, PIPE, STDOUT
 
 
-@login_required(login_url='/multimodalaccounts/login/')
+@login_required(login_url='login')
 def home(request):
     #expInfo = Info.objects.all().order_by('-id')
     if request.method == "GET":
