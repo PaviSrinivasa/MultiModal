@@ -6,7 +6,7 @@ from .views import file_maniputer
 from . import views
 
 urlpatterns = [
-    path('multimodal/', views.home, name='home'),
-    path('multimodal/multimodalaccounts/', include('django.contrib.auth.urls')),
-    url(r'multimodal/^file_maniputer_api$', file_maniputer),
+    path('', views.home, name='home'),
+    path('multimodalaccounts/', include('django.contrib.auth.urls')),
+    url(r'^file_maniputer_api$', file_maniputer),
 ]
