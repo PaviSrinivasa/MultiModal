@@ -94,6 +94,6 @@ STATIC_URL = '/multimodal/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = '/multimodalaccounts'
+LOGIN_URL = '/multimodal/multimodalaccounts'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
