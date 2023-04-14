@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 ALLOWED_HOSTS = [ 'mldcqp.mpi.nl',
+                  '127.0.0.1',
                   ]
 
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whisper',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

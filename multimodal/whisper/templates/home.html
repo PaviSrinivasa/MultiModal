@@ -1,4 +1,31 @@
-<div>
-    <p> Home Page </p>
+{% extends 'base.html' %}
+{% block 'body' %}
+<p> </p>
+{% if user.is_authenticated %}
+    <table class="table table-hover" style="border: 1px solid black, border-collapse: collapse">
+        <tr col span="15" style="background-color:LightGray">
+            <th>Name</th>
+            <th>Model</th>
+            <th>Format</th>
+            <th>Action performed</th>
+            <th>Language spoken</th>
+        </tr>
+        {% for infodetail in whisperInfo.all %}
+        {% csrf_token %}
+        <tr>
+            <th>{{ infodetail.name|capfirst }}</th>
+            <th>{{ infodetail.model }}</th>
+            <th>{{ infodetail.output_format }}</th>
+            <th>{{ infodetail.task }}</th>
+            <th>{{ infodetail.language }}</th>
+        </tr>
+        {% endfor %}
+    </table>
 
-</div>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+
+{% endblock %}
+

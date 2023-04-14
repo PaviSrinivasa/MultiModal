@@ -1,10 +1,12 @@
 #!/bin/sh
 
- -N test-demo
- -cwd
- -q single.q
- -S /bin/bash
-# -M youremail@server.com
-# -m beas
+#$ -N whisper
+#$ -cwd
+#$ -q cuda.q
+#$ -S /bin/bash
+module purge
+module load ffmpeg cuda/11.3 miniconda/3.2021.10
+conda activate whisper
+whisper $audio_file
 
-bash multimodal/scripts/file_manipulater.sh create
+#bash multimodal/scripts/file_manipulater.sh create

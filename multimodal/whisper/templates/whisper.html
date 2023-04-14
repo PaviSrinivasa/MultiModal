@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block 'body' %}
+{% load widget_tweaks %}
+
+<div class="container">
+
+    <h2 style="color: Red">{{ note }}</h2>
+
+    <form action="{% url 'whisper' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in addform %}
+            <div class="form-group {%if field.errors %}alert alert-danger{%endif%}">
+              {% csrf_token %}
+              {{ field.errors }}
+              {{ field.label_tag }}
+              {% render_field field class="form-control" %}
+            </div>
+        {% endfor %}
+        <input type="submit" value="Run command">
+    </form>
+</div>
+
+{% endblock %}
