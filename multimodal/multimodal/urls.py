@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import re_path as url
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.static import serve
