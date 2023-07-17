@@ -1,5 +1,6 @@
 import ast
 import json
+import os
 from subprocess import Popen, PIPE, STDOUT
 
 from django.contrib import messages
@@ -7,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import FileSystemStorage
+from mptt.models import MPTTModel, TreeForeignKey
+
 
 from .models import Whisper
 from .forms import WhisperForm
@@ -28,9 +32,10 @@ def home(request):
 def whisper(request):
         command = ['qsub test.sge']
         if request.method == 'POST':
-                filled_form = WhisperForm(request.POST, request.FILES)
+                filled_form = WhisperForm(request.POST)
                 if filled_form.is_valid():
                         obj = filled_form.save(commit=False)
+                        obj.submitter = request.user
                         created_whisper = filled_form.save()
                         messages.success(request, 'Success!')
                 else:
@@ -41,6 +46,54 @@ def whisper(request):
         else:
                 form = WhisperForm()
                 return render(request, 'whisper.html', {'addform':form, })
+
+
+def whisperBrowse(request):
+        command = ['qsub test.sge']
+        if request.method == 'POST':
+                filled_form = WhisperForm(request.POST, request.FILES)
+                if filled_form.is_valid():
+                        obj = filled_form.save(commit=False)
+                        obj.submitter = request.user
+                        up_file = request.FILES['upload_file']
+                        #fs = FileSystemStorage()
+                        #print(fs.path(up_file))
+                        #obj.path = filled_form(request.FILES['upload_file'])
+                        # print(up_file)
+                        # print(obj)
+                        # print(obj.upload_url)
+                        # print(obj.upload_file.path)
+                        # print(obj.upload_file.url)
+                        created_whisper = filled_form.save()
+                        messages.success(request, 'Success!')
+                else:
+                        messages.error(request, 'Failed!')
+                new_form = WhisperForm()
+                info = Whisper.objects.all()
+                return render(request, 'home.html', {})
+        else:
+                form = WhisperForm()
+                return render(request, 'whisper.html', {'addform':form, })
+
+def file_browser(request):
+    root_directory = os.path.join('/mnt/d/work')  # Set the root directory you want to browse
+    filepath = []
+    directorypath = []
+
+    if os.path.exists(root_directory):
+        for dirpath, dirs, files in os.walk(root_directory):
+            path = dirpath.split('/')
+            directorypath.append('|'+ (len(path))*'---'+ '['+os.path.basename(dirpath)+']')
+            for f in files:
+                filepath.append('|'+ len(path)*'---'+ f)
+
+    context = {
+        'files': filepath,
+        'directories': directorypath,
+    }
+
+    return render(request, 'browser.html', context)
+
 
 
 

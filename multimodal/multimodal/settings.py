@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whisper',
     'widget_tweaks',
+    'mptt',
 ]
 
 MIDDLEWARE = [

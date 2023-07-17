@@ -8,10 +8,10 @@ class WhisperForm(forms.ModelForm):
         model = Whisper
         fields = '__all__'
         labels = {
-                    'name' : 'Name for this command run ',
+                    'name': 'Name for this command run ',
                     'model': 'Model to use ',
                     'output_format': 'Format of the output file ',
-                    'task' : 'Whether to perform speech recognition or translation ',
+                    'task': 'Whether to perform speech recognition or translation ',
                     'language': 'Language spoken in the audio ',
                     'upload_file': 'Choose the file here '
         }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Browser</title>
+</head>
+<body>
+    <h1>File Browser</h1>
+    <h2>Files:</h2>
+    <ul>
+        {% for file in files %}
+            <li>{{ file }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Directories:</h2>
+    <ul>
+        {% for directory in directories %}
+            <li>{{ directory }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

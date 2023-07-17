@@ -10,4 +10,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('whisper/', views.whisper, name='whisper'),
     url(r'^file_maniputer_api$', file_maniputer),
+    path('filebrowser/', views.file_browser, name='file_browser'),
 ]
