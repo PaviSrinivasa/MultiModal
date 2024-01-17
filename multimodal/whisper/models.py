@@ -21,7 +21,7 @@ class Whisper(models.Model):
     output_format= models.CharField(max_length=5, choices=OUTPUT_FORMAT, blank=False)
     task = models.CharField(max_length=10, choices=TASK_OPTIONS, blank=False)
     language = models.CharField(max_length=50, choices=LANG_OPTIONS, blank=False)
-    upload_file = models.FileField(upload_to='documents/', default='images/MPI_logo_regular.png')
+    #upload_file = models.FileField(upload_to='documents/', default='images/MPI_logo_regular.png')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     submitter = models.CharField(max_length=30, blank=True)
     path = models.CharField(max_length=10000, null=True)

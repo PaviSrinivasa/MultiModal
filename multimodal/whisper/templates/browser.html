@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>File Browser</title>
+	<link rel="stylesheet" href="css/filetree.css" type="text/css" >
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="whisper/static/js/filebrowser.js" >
+
+</script>
+
 </head>
 <body>
-    <h1>File Browser</h1>
-    <h2>Files:</h2>
-    <ul>
-        {% for file in files %}
-            <li>{{ file }}</li>
-        {% endfor %}
-    </ul>
-    <h2>Directories:</h2>
-    <ul>
-        {% for directory in directories %}
-            <li>{{ directory }}</li>
-        {% endfor %}
-    </ul>
+    <div id="container"> </div>
+
+
+    <div id="selected_file"></div>
 </body>
 </html>

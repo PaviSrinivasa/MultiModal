@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'whisper',
     'widget_tweaks',
     'mptt',
+    'filemanager',
 ]
 
 MIDDLEWARE = [
@@ -91,10 +92,56 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/multimodal/static/'
+STATIC_URL = '/multimodal/whisper/static/'
+
+LOG_PATH = '/var/log/multimodal'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(filename)s:%(lineno)s] %(message)s",
+            'datefmt': "%Y/%b/%d %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'django': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(str(LOG_PATH), 'django.log'),
+            'maxBytes': (1024 * 1024 * 10),
+            'backupCount': 10,
+            'formatter': 'verbose',
+        },
+        'user': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(str(LOG_PATH), 'user.log'),
+            'maxBytes': 1024 * 1024 * 10,
+            'backupCount': 10,
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['django'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+        'user': {
+            'handlers': ['user'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+MEDIA_ROOT = Path('/mnt/d/Docs')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'

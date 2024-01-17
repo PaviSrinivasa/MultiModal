@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block 'body' %}
+
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<title>File System API</title>
+	</head>
+	<body>
+		<h1>Known Start Directories with File System API Example</h1>
+		<input type="hidden" id="myVar" name="variable" value="{{ rootdir }}">
+		<button class="pick-file">Click me</button><br><br>
+		<script src="whisper/static/js/filepicker.js" type="module"></script>
+		<!--<select id="a" size="6">
+			<option>documents</option>
+			<option>desktop</option>
+			<option>downloads</option>
+			<option>pictures</option>
+			<option>videos</option>
+			<option>music</option>
+		</select><br>-->
+		<!--{{ rootdir|json_script:"rootdir" }}
+		<script src="whisper/static/js/filepicker.js">
+			const mydata = JSON.parse(document.getElementById('mydata').textContent);
+		</script>-->
+	</body>
+	</html>
+
+{% endblock %}
+
+
+<!--
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>File System API</title>
+</head>
+<body>
+	<h1>Start Directory with File System API Example</h1>
+	<button class="read-dir">Select Dir</button>
+	<button class="pick-file">Select File</button>
+	<script src="whisper/static/js/filepicker.js" type="module"></script>
+</body>
+</html>
+-->
