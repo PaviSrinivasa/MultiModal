@@ -129,7 +129,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['django'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         },
         'user': {
             'handlers': ['user'],
