@@ -14,6 +14,7 @@ from pathlib import Path
 
 from .secret_settings import *
 from django.contrib.messages import constants as messages
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,6 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, True),
+    SECRET_KEY=(str, "django-insecure-%$*3ob^7w6s0_g"),
+    ALLOWED_HOSTS=(list, ["*"]),
+    INPUT_FILES_DIR=(str, "/tmp"),
+)
+environ.Env.read_env(BASE_DIR / ".env")
 
 DEBUG = True
 
@@ -41,7 +51,6 @@ INSTALLED_APPS = [
     'whisper',
     'widget_tweaks',
     'mptt',
-    'filemanager',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +156,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
+
+INPUT_FILES_DIR = env("INPUT_FILES_DIR")
