@@ -29,7 +29,7 @@ def home(request):
 
 def whisper(request):
         if request.method == 'POST':
-                filled_form = WhisperForm(request.POST)
+                filled_form = WhisperForm(request.POST, request.FILES)
                 if filled_form.is_valid():
                         filled_form.input_file_path = filled_form.cleaned_data['input_file_path']
                         filled_form.submitter = request.user
