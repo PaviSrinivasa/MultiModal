@@ -38,8 +38,6 @@ class ClientFilePathField(forms.FileField):
 
 class WhisperForm(forms.ModelForm):
     input_file_path = ClientFilePathField()
-    Whisper.input_file_path= str.join(str(settings.MEDIA_ROOT),filename) # trying to see if the value gets assigned here.
-
     class Meta:
         model = Whisper
         fields = '__all__'

@@ -9,5 +9,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('whisper/', views.whisper, name='whisper'),
-    path('filebrowser', views.file_browser, name='file_browser'),
+    #path('filebrowser', views.file_browser, name='file_browser'),
 ]
