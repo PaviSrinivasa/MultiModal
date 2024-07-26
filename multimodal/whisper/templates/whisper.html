@@ -13,7 +13,7 @@
         </div>
     {% endif %}
 
-    <form action="{% url 'whisper' %}" method="post">
+    <form action="{% url 'whisper' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in addform %}
             <div class="form-group {%if field.errors %}alert alert-danger{%endif%}">
