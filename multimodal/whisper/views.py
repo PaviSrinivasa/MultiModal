@@ -33,8 +33,8 @@ def whisper(request):
                 if filled_form.is_valid():
                         obj = filled_form.save(commit=False)
                         obj.submitter = request.user
-                        created_whisper = filled_form.save()
                         obj.input_file_path = ClientFilePathField()
+                        created_whisper = filled_form.save()
                         print("Filename",obj.input_file_path)
                         messages.success(request, 'Success!')
                 else:
