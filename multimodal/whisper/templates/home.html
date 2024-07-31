@@ -9,6 +9,9 @@
             <th>Format</th>
             <th>Action performed</th>
             <th>Language spoken</th>
+            <th>File path</th>
+            <th>Submitted by</th>
+            <th>Uploaded at</th>
         </tr>
         {% for infodetail in whisperInfo.all %}
         {% csrf_token %}
@@ -18,6 +21,9 @@
             <th>{{ infodetail.output_format }}</th>
             <th>{{ infodetail.task }}</th>
             <th>{{ infodetail.language }}</th>
+            <th>{{ infodetail.input_file_path }}</th>
+            <th>{{ infodetail.submitter }}</th>
+            <th>{{ infodetail.uploaded_at }}</th>
         </tr>
         {% endfor %}
     </table>

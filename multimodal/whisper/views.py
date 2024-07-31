@@ -16,6 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .forms import WhisperForm, ClientFilePathField
 from .models import Whisper
+from django.conf import settings
 
 
 @login_required(login_url='login')
@@ -31,16 +32,19 @@ def whisper(request):
         if request.method == 'POST':
                 filled_form = WhisperForm(request.POST, request.FILES)
                 if filled_form.is_valid():
-                        filled_form.input_file_path = filled_form.cleaned_data['input_file_path']
-                        filled_form.submitter = request.user
-                        filled_form.save()
-                        messages.success(request, 'Success!')
+                    obj = filled_form.save(commit=False)
+                    obj.submitter = request.user
+                    filled_form.input_file_path = os.path.join(settings.MEDIA_ROOT,str(filled_form.cleaned_data['input_file_path']))
+                    obj.input_file_path = filled_form.input_file_path
+                    print(filled_form.input_file_path)
+                    filled_form.save()
+                    messages.success(request, 'Success!')
                 else:
                         print(filled_form.errors)
                         messages.error(request, 'Failed!')
                 new_form = WhisperForm()
-                info = Whisper.objects.all()
-                return render(request, 'home.html', {})
+                whiperInfo = Whisper.objects.all().order_by('-id')
+                return render(request, 'home.html', {'whisperInfo':whiperInfo, })
         else:
                 form = WhisperForm()
                 return render(request, 'whisper.html', {'addform':form, })

@@ -41,6 +41,7 @@ class WhisperForm(forms.ModelForm):
     class Meta:
         model = Whisper
         fields = '__all__'
+        exclude = ('submitter',)
         labels = {
                     'name': 'Name for this command run ',
                     'model': 'Model to use ',
