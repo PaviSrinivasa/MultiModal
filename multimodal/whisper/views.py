@@ -38,6 +38,7 @@ def whisper(request):
                     obj.input_file_path = filled_form.input_file_path
                     print(filled_form.input_file_path)
                     filled_form.save()
+                    jobRun(obj.id)
                     messages.success(request, 'Success!')
                 else:
                         print(filled_form.errors)
@@ -49,6 +50,11 @@ def whisper(request):
                 form = WhisperForm()
                 return render(request, 'whisper.html', {'addform':form, })
 
+
+def jobRun(id):
+    cmd = Whisper.objects.get(pk=id)
+    command_submit = cmd.name+" "+cmd.model+" "+cmd.output_format+" "+cmd.task+" "+cmd.language+" "+cmd.input_file_path
+    print(command_submit)
 
 # def file_browser(request):
 #     root_directory = os.path.join('/mnt/d/work')
