@@ -9,12 +9,11 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 from .secret_settings import *
 from django.contrib.messages import constants as messages
-import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,14 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, True),
-    SECRET_KEY=(str, "django-insecure-%$*3ob^7w6s0_g"),
-    ALLOWED_HOSTS=(list, ["*"]),
-    INPUT_FILES_DIR=(str, "/tmp"),
-)
-environ.Env.read_env(BASE_DIR / ".env")
 
 DEBUG = True
 
@@ -50,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whisper',
     'widget_tweaks',
-    'mptt',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +93,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/multimodal/whisper/static/'
 
-LOG_PATH = '/var/log/multimodal'
+LOG_PATH = '/var/log'
 
 LOGGING = {
     'version': 1,
@@ -157,4 +147,3 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
-INPUT_FILES_DIR = env("INPUT_FILES_DIR")

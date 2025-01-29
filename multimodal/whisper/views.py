@@ -54,6 +54,7 @@ def whisper(request):
 def jobRun(id):
     cmd = Whisper.objects.get(pk=id)
     command_submit = cmd.name+" "+cmd.model+" "+cmd.output_format+" "+cmd.task+" "+cmd.language+" "+cmd.input_file_path
+    
     print(command_submit)
 
 # def file_browser(request):
