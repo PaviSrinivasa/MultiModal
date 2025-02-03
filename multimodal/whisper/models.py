@@ -26,9 +26,5 @@ class Whisper(models.Model):
     submitter = models.CharField(max_length=30, blank=True)
     path = models.CharField(max_length=10000, null=True)
 
-    @property
-    def upload_url(self):
-        return self.upload_file.url
-
     def __str__(self):
         return self.name
